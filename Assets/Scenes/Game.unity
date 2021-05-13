@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 123642488}
   - component: {fileID: 123642487}
   - component: {fileID: 123642486}
+  - component: {fileID: 123642489}
   m_Layer: 5
   m_Name: Accelerator
   m_TagString: Untagged
@@ -156,9 +157,9 @@ RectTransform:
   m_Father: {fileID: 1717418980}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 907, y: -359}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 906, y: 176}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123642486
@@ -243,6 +244,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123642484}
   m_CullTransparentMesh: 1
+--- !u!114 &123642489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123642484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1925325453}
+          m_TargetAssemblyTypeName: PlayerCar, Assembly-CSharp
+          m_MethodName: Accelerate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1925325453}
+          m_TargetAssemblyTypeName: PlayerCar, Assembly-CSharp
+          m_MethodName: Decelerate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &357543440
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958103841}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.98, y: 3.2666175, z: 2.9169145}
+  m_LocalPosition: {x: 7.98, y: 3.2666175, z: 1.9}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 2041377973}
@@ -1187,7 +1233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5fea91c56103e4db0acfb88886309f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateSpeed: 10
+  rotateSpeed: 40
+  playerCar: {fileID: 1925325448}
 --- !u!1 &1161228695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1313,7 @@ GameObject:
   - component: {fileID: 1186884028}
   - component: {fileID: 1186884027}
   - component: {fileID: 1186884026}
+  - component: {fileID: 1186884029}
   m_Layer: 5
   m_Name: Brake
   m_TagString: Untagged
@@ -1287,9 +1335,9 @@ RectTransform:
   m_Father: {fileID: 1717418980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 665, y: -359}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 699, y: 179}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1186884026
@@ -1374,6 +1422,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186884024}
   m_CullTransparentMesh: 1
+--- !u!114 &1186884029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186884024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1925325453}
+          m_TargetAssemblyTypeName: PlayerCar, Assembly-CSharp
+          m_MethodName: Brake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1925325453}
+          m_TargetAssemblyTypeName: PlayerCar, Assembly-CSharp
+          m_MethodName: Decelerate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1260012102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1732,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473503245}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.59, y: 3.13, z: 2.9169145}
+  m_LocalPosition: {x: -4.59, y: 3.13, z: 2.09}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 2041377973}
@@ -1871,8 +1964,8 @@ Canvas:
   m_GameObject: {fileID: 1717418976}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1881,7 +1974,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1717418980
 RectTransform:
@@ -1904,6 +1997,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1898008711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898008712}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898008712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898008711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2997416, y: -0.5326138, z: -0.38639763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1925325448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,6 +2039,7 @@ GameObject:
   - component: {fileID: 1925325449}
   - component: {fileID: 1925325451}
   - component: {fileID: 1925325452}
+  - component: {fileID: 1925325453}
   m_Layer: 0
   m_Name: PlayerCar
   m_TagString: Untagged
@@ -1982,7 +2106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925325448}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -8.73, y: -0.45, z: -1.08}
+  m_LocalPosition: {x: -9.42, y: -0.34, z: -1.08}
   m_LocalScale: {x: 0.45, y: 0.45, z: 5.68}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2004,7 +2128,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5038133, y: 0.31457162}
     oldSize: {x: 4.6289062, y: 9.48}
     newSize: {x: 4.62, y: 9.48}
     adaptiveTilingThreshold: 0.5
@@ -2013,106 +2137,59 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.7199999, y: -4.23}
-      - {x: 1.8, y: -4.13}
-      - {x: 1.9, y: -3.72}
-      - {x: 1.8199999, y: -3.6599998}
-      - {x: 1.9, y: -3.34}
-      - {x: 1.9699999, y: -3.1299999}
-      - {x: 2.01, y: -2.97}
-      - {x: 2, y: -2.9099998}
-      - {x: 1.99, y: -2.8999999}
-      - {x: 1.99, y: -2.1}
-      - {x: 2.01, y: -2.1}
-      - {x: 2, y: -1.89}
-      - {x: 1.9599999, y: -1.65}
-      - {x: 1.93, y: -1.4499999}
-      - {x: 1.92, y: -1.2099999}
-      - {x: 1.9, y: -1.12}
-      - {x: 1.87, y: -1.06}
-      - {x: 1.87, y: -0.61}
-      - {x: 1.86, y: -0.22}
-      - {x: 1.8399999, y: -0.11}
-      - {x: 1.8199999, y: 0.31}
-      - {x: 1.8, y: 0.78}
-      - {x: 1.79, y: 1.36}
-      - {x: 1.8, y: 1.48}
-      - {x: 2.11, y: 1.38}
-      - {x: 2.19, y: 1.38}
-      - {x: 2.23, y: 1.42}
-      - {x: 2.23, y: 1.61}
-      - {x: 1.9799999, y: 1.8499999}
-      - {x: 1.79, y: 1.9599999}
-      - {x: 1.8299999, y: 2.32}
-      - {x: 1.8299999, y: 2.87}
-      - {x: 1.81, y: 3.03}
-      - {x: 1.8, y: 3.1399999}
-      - {x: 1.74, y: 3.32}
-      - {x: 1.5, y: 3.86}
-      - {x: 1.4399999, y: 3.97}
-      - {x: 1.31, y: 4.2}
-      - {x: 1.1999999, y: 4.31}
-      - {x: 0.84999996, y: 4.45}
-      - {x: 0.59999996, y: 4.54}
-      - {x: 0.42999998, y: 4.5899997}
-      - {x: 0.25, y: 4.62}
-      - {x: -0.25, y: 4.62}
-      - {x: -0.37, y: 4.6}
-      - {x: -0.68, y: 4.52}
-      - {x: -0.91999996, y: 4.42}
-      - {x: -1.1999999, y: 4.2999997}
-      - {x: -1.38, y: 4.1}
-      - {x: -1.56, y: 3.78}
-      - {x: -1.66, y: 3.56}
-      - {x: -1.76, y: 3.32}
-      - {x: -1.8299999, y: 3.08}
-      - {x: -1.8199999, y: 2.99}
-      - {x: -1.81, y: 2.29}
-      - {x: -1.8, y: 2}
-      - {x: -1.79, y: 1.9499999}
-      - {x: -1.99, y: 1.8399999}
-      - {x: -2.23, y: 1.5799999}
-      - {x: -2.23, y: 1.41}
-      - {x: -2.1699998, y: 1.37}
-      - {x: -2.06, y: 1.38}
-      - {x: -1.81, y: 1.48}
-      - {x: -1.8, y: 1.26}
-      - {x: -1.81, y: 0.96999997}
-      - {x: -1.8199999, y: 0.39999998}
-      - {x: -1.81, y: -0.04}
-      - {x: -1.8299999, y: -0.08}
-      - {x: -1.8399999, y: -0.35}
-      - {x: -1.87, y: -0.42999998}
-      - {x: -1.86, y: -0.66999996}
-      - {x: -1.8499999, y: -0.68}
-      - {x: -1.87, y: -1.03}
-      - {x: -1.89, y: -1.26}
-      - {x: -1.92, y: -1.67}
-      - {x: -1.9599999, y: -1.78}
-      - {x: -1.9799999, y: -1.9599999}
-      - {x: -1.9799999, y: -2.11}
-      - {x: -1.9699999, y: -2.12}
-      - {x: -1.9699999, y: -2.83}
-      - {x: -1.99, y: -2.83}
-      - {x: -1.9699999, y: -3.04}
-      - {x: -1.91, y: -3.1299999}
-      - {x: -1.86, y: -3.33}
-      - {x: -1.77, y: -3.59}
-      - {x: -1.77, y: -3.6899998}
-      - {x: -1.8499999, y: -3.72}
-      - {x: -1.79, y: -4}
-      - {x: -1.73, y: -4.16}
-      - {x: -1.6899999, y: -4.2}
-      - {x: -1.4, y: -4.35}
-      - {x: -1.09, y: -4.48}
-      - {x: -0.96999997, y: -4.52}
-      - {x: -0.71999997, y: -4.56}
-      - {x: -0.55, y: -4.58}
-      - {x: -0.24, y: -4.61}
-      - {x: 0.47, y: -4.61}
-      - {x: 0.79999995, y: -4.58}
-      - {x: 1.0799999, y: -4.5099998}
-      - {x: 1.64, y: -4.25}
+    - - {x: 1.7968798, y: -2.4266703}
+      - {x: 1.889458, y: -1.9452641}
+      - {x: 1.9079735, y: -1.6304984}
+      - {x: 2.0005517, y: -1.2231547}
+      - {x: 2.0005517, y: -0.18627958}
+      - {x: 1.9820361, y: -0.01963895}
+      - {x: 1.9079735, y: 0.6098923}
+      - {x: 1.8709424, y: 1.1653612}
+      - {x: 1.889458, y: 1.3875486}
+      - {x: 1.8153955, y: 2.2948143}
+      - {x: 1.7968798, y: 2.90583}
+      - {x: 1.7968798, y: 3.20208}
+      - {x: 2.185708, y: 3.0724707}
+      - {x: 2.2227392, y: 3.1835644}
+      - {x: 2.2227392, y: 3.4242675}
+      - {x: 2.0005517, y: 3.6279395}
+      - {x: 1.8153955, y: 3.7575488}
+      - {x: 1.8339111, y: 4.0723143}
+      - {x: 1.8524266, y: 4.646299}
+      - {x: 1.7598486, y: 5.127705}
+      - {x: 1.3339891, y: 5.9609084}
+      - {x: 1.2043798, y: 6.0905175}
+      - {x: 0.5563329, y: 6.349736}
+      - {x: 0.29711413, y: 6.386768}
+      - {x: -0.35093278, y: 6.386768}
+      - {x: -0.5731203, y: 6.349736}
+      - {x: -1.2396828, y: 6.0905175}
+      - {x: -1.4248391, y: 5.905361}
+      - {x: -1.8136673, y: 5.1091895}
+      - {x: -1.869214, y: 4.887002}
+      - {x: -1.8506985, y: 3.7205174}
+      - {x: -2.0173392, y: 3.6279395}
+      - {x: -2.2580423, y: 3.350205}
+      - {x: -2.2580423, y: 3.146533}
+      - {x: -2.072886, y: 3.0909863}
+      - {x: -1.8321829, y: 3.1650486}
+      - {x: -1.8506985, y: 2.7206738}
+      - {x: -1.869214, y: 1.6837987}
+      - {x: -1.8877298, y: 1.369033}
+      - {x: -1.9062454, y: 0.75801736}
+      - {x: -2.0173392, y: -0.01963895}
+      - {x: -2.0173392, y: -1.204639}
+      - {x: -1.7951516, y: -1.9082328}
+      - {x: -1.8877298, y: -1.9452641}
+      - {x: -1.8506985, y: -2.3711236}
+      - {x: -1.4618703, y: -2.6488578}
+      - {x: -1.1100734, y: -2.741436}
+      - {x: -0.8878859, y: -2.7969828}
+      - {x: -0.4249953, y: -2.8710454}
+      - {x: 0.5563329, y: -2.8710454}
+      - {x: 0.76000476, y: -2.8525298}
+      - {x: 1.0747705, y: -2.7599516}
+      - {x: 1.7413329, y: -2.4637015}
 --- !u!50 &1925325452
 Rigidbody2D:
   serializedVersion: 4
@@ -2125,8 +2202,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 2
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -2134,6 +2211,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1925325453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925325448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568430b4579258b4a82011595482aff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 15
 --- !u!1 &2041377972
 GameObject:
   m_ObjectHideFlags: 0
