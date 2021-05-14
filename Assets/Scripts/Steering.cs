@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Steering : MonoBehaviour
@@ -6,15 +7,17 @@ public class Steering : MonoBehaviour
 
     public GameObject playerCar;
 
-    private bool _rotateBack = true;
-
     private Camera _camera;
+
+    private Rigidbody2D _playerCarRb;
+
+    private bool _rotateBack = true;
 
     private float _screenWidth;
 
-    private Vector2 _touchPosStart;
+    private float _touchPosDiff;
 
-    private Vector2 _initTouchPos;
+    private Vector2 _touchPosStart;
 
     private void Awake()
     {
@@ -25,111 +28,105 @@ public class Steering : MonoBehaviour
     private void Start()
     {
         Debug.Log("Welcome!!!!!!!");
+        _playerCarRb = playerCar.GetComponent<Rigidbody2D>();
         _screenWidth = Screen.width;
     }
 
     private void Update()
     {
-        if (Input.touchCount <= 0)
+        if (_rotateBack) // To rotate back car and steering when finger is lifted/ not on steering
         {
-            _rotateBack = true;
-            return;
+            transform.rotation =
+                Quaternion.RotateTowards(
+                    transform.rotation,
+                    Quaternion.Euler(0f, 0f, 0f),
+                    20f * Time.deltaTime);
+
+            playerCar.gameObject.transform.rotation = Quaternion.RotateTowards(
+                playerCar.gameObject.transform.rotation,
+                Quaternion.Euler(0f, 0f, -90f),
+                20f * Time.deltaTime);
         }
 
-        var i = 0;
-
-        while (Input.touchCount > i) //loop over every touch found    
+        switch (SystemInfo.deviceType)
         {
-            if (Input.GetTouch(i).position.x < _screenWidth / 2) //Checking for touchpoints on the leftside of screen
+            case DeviceType.Handheld when Input.touchCount <= 0:
+                _rotateBack = true;
+                return;
+            case DeviceType.Handheld:
             {
-                // if (Input.GetTouch(i).phase == TouchPhase.Began) // Storing the position when the screen is touched for the first time
-                // {
-                //     rotateBack = false;
-                //     _touchPosStart = Input.GetTouch(i).position;
-                // }
-                //
-                // else
-                if (Input.GetTouch(i).phase == TouchPhase.Moved) // Storing continuous finger positions for rotation
-                {
-                    _rotateBack = false;
-                    var currTouchPos = Input.GetTouch(i).position;
+                var i = 0;
 
-                    if (_touchPosStart.x < currTouchPos.x) //Move Right
+                while (Input.touchCount > i) //loop over every touch found    
+                {
+                    if (Input.GetTouch(i).position.x < _screenWidth / 2) //Checking for touchpoints on the leftside of screen
                     {
-                        var touchDiff = _touchPosStart.x - currTouchPos.x;
-                        transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
-                        playerCar.gameObject.transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
+                        if (Input.GetTouch(i).phase == TouchPhase.Began) // Storing the position when the screen is touched for the first time
+                        {
+                            _rotateBack = false;
+                            _touchPosStart = Input.GetTouch(i).position;
+                        }
+
+                        else if (Input.GetTouch(i).phase == TouchPhase.Moved) // Storing continuous finger positions for rotation
+                        {
+                            _rotateBack = false;
+                            var currTouchPos = Input.GetTouch(i).position;
+                            _touchPosDiff = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
+
+                            transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
+                            playerCar.gameObject.transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
+                        }
+
+                        else if (Input.GetTouch(i).phase == TouchPhase.Stationary)
+                        {
+                            _touchPosStart = Input.GetTouch(i).position;
+                        }
+                        else
+                        {
+                            _rotateBack = true;
+                        }
                     }
-                    else if (_touchPosStart.x > currTouchPos.x) //Move Left
-                    {
-                        var touchDiff = _touchPosStart.x - currTouchPos.x;
-                        transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
-                        playerCar.gameObject.transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
-                    }
+
+                    i++;
                 }
 
-                else if (Input.GetTouch(i).phase == TouchPhase.Stationary)
-                {
-                    _touchPosStart = Input.GetTouch(i).position;
-                }
-                else if (_rotateBack == true)
-                {
-                    transform.rotation =
-                        Quaternion.RotateTowards(
-                            transform.rotation,
-                            Quaternion.Euler(0f, 0f, 0f),
-                            20f * Time.deltaTime);
-
-                    playerCar.gameObject.transform.rotation = Quaternion.RotateTowards(
-                        playerCar.gameObject.transform.rotation,
-                        Quaternion.Euler(0f, 0f, -90f),
-                        20f * Time.deltaTime);
-                }
+                break;
             }
 
-            i++;
+            case DeviceType.Desktop:
+            {
+                Vector2 initTouchPos = _camera.ScreenToWorldPoint(Input.mousePosition);
+                if (!(initTouchPos.x < 0)) return;
+
+                if (Input.GetMouseButtonDown(0)) // Storing the position when the screen is touched for the first time
+                {
+                    _rotateBack = false;
+                    _touchPosStart.x = initTouchPos.x;
+                }
+                else if (Input.GetMouseButton(0)) // Storing continuous finger positions for rotation
+                {
+                    _rotateBack = false;
+                    Vector2 currTouchPos = _camera.ScreenToWorldPoint(Input.mousePosition);
+
+                    if (Math.Abs(_touchPosStart.x - currTouchPos.x) > .1) 
+                    {
+                        _rotateBack = false;
+                        _touchPosDiff = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
+
+                        transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
+                        playerCar.gameObject.transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
+
+                        // _direction = Mathf.Sign(Vector2.Dot(_playerCarRb.velocity, _playerCarRb.GetRelativeVector(Vector2.up)));
+                        // _playerCarRb.rotation += .5f * _playerCarRb.velocity.magnitude * _direction;
+                    }
+                    else if (Input.GetMouseButtonUp(0)) // When finger is lifted
+                    {
+                        _rotateBack = true;
+                    }
+                }
+
+                break;
+            }
         }
-
-
-        // Vector2 initTouchPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        // if (!(initTouchPos.x < 0)) return;
-        // if (Input.GetMouseButtonDown(0)) // Storing the position when the screen is touched for the first time
-        // {
-        //     rotateBack = false;
-        //     _touchPosStart = initTouchPos.x;
-        // }
-        // else if (Input.GetMouseButton(0)) // Storing continuous finger positions for rotation
-        // {
-        //     rotateBack = false;
-        //     Vector2 currTouchPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        //
-        //     if (_touchPosStart < currTouchPos.x) // Move Right
-        //     {
-        //         Debug.Log("Finger Moved Right");
-        //         var touchDiff = _touchPosStart.x - currTouchPos.x;
-        //         // if (Mathf.Abs(touchDiff) > 1)
-        //         transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
-        //         playerCar.gameObject.transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
-        //     }
-        //     else if (_touchPosStart > currTouchPos.x)
-        //     {
-        //         Debug.Log("Finger Moved Left"); // Move Left
-        //         var touchDiff = _touchPosStart - currTouchPos.x;
-        //         // if (Mathf.Abs(touchDiff) > 1)
-        //         transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
-        //         playerCar.gameObject.transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
-        //     }
-        // }
-        // else if (Input.GetMouseButtonUp(0)) // When finger is lifted
-        // {
-        //     rotateBack = true;
-        //     // RotateBack();
-        //     // transform.Rotate(Vector3.forward, -Mathf.Lerp(0f, transform.eulerAngles.z, 5));
-        //     // transform.rotation = Quaternion.Lerp(quaternion.Euler(0,0,0), Quaternion.Euler(0, 0, 0), 5 * Time.deltaTime);
-        //     // playerCar.gameObject.transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
-        // }
-        //
-
-        // if (!rotateBack) return;
     }
 }
