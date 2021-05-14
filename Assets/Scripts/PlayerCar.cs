@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCar : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class PlayerCar : MonoBehaviour
 
     private bool _accelerate = false;
 
-    private bool _moveCar = false;
+    public bool moveCar = false;
 
     private Rigidbody2D _rb;
 
@@ -25,7 +26,7 @@ public class PlayerCar : MonoBehaviour
 
     private void ControlMovement()
     {
-        if (!_moveCar) return;
+        if (!moveCar) return;
 
         switch (_accelerate)
         {
@@ -40,18 +41,18 @@ public class PlayerCar : MonoBehaviour
 
     public void Decelerate()
     {
-        _moveCar = false;
+        moveCar = false;
     }
 
     public void Accelerate()
     {
-        _moveCar = true;
+        moveCar = true;
         _accelerate = true;
     }
 
     public void Brake()
     {
-        _moveCar = true;
+        moveCar = true;
         _accelerate = false;
     }
 }
