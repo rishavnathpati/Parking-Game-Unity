@@ -1459,3 +1459,172 @@ System memory in use after: 56.1 MB.
 Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2662.
 Total: 68.475700 ms (FindLiveObjects: 0.310300 ms CreateObjectMapping: 0.202900 ms MarkObjects: 2.534300 ms  DeleteObjects: 65.426700 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 3019.512298 seconds.
+  path: Assets/Scenes/Game 2.unity
+  artifactKey: Guid(9524620a50b37c249b456908bdf47f77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 2.unity using Guid(9524620a50b37c249b456908bdf47f77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5a13a603d5b6ea0999af97529eef804') in 0.053233 seconds
+  Import took 0.084979 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.147587 seconds.
+  path: Assets/Scenes/Game.unity
+  artifactKey: Guid(6df7e3af827922b45bdaf64a0708626e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game.unity using Guid(6df7e3af827922b45bdaf64a0708626e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8938bb7f87cd8858afa515ed457b5ab1') in 0.035228 seconds
+  Import took 0.054005 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.132822 seconds.
+  path: Assets/Scenes/Game 1.unity
+  artifactKey: Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 1.unity using Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c3f2d0f9297bf2e430d1ebab0dbf33b') in 0.009641 seconds
+  Import took 0.053428 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.126170 seconds.
+  path: Assets/Scenes/Game 2.unity
+  artifactKey: Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 2.unity using Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db75c0190d73f0c05684457a094f6d3d') in 0.003579 seconds
+  Import took 0.018010 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001943 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.896 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.40 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1989 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 95.2 MB.
+System memory in use after: 95.2 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2666.
+Total: 3.619100 ms (FindLiveObjects: 0.704800 ms CreateObjectMapping: 0.178800 ms MarkObjects: 2.597600 ms  DeleteObjects: 0.135000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 551.397709 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset
+  artifactKey: Guid(dc36b3fdc14f47ebb36fd484a67e268a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Electronic Highway Sign SDF.asset using Guid(dc36b3fdc14f47ebb36fd484a67e268a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1228b001578ebdc98c50e6d60d7a5ad7') in 0.886479 seconds
+  Import took 0.890906 seconds .
+
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 1.68 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 10 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 57.2 MB.
+System memory in use after: 57.2 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2702.
+Total: 3.843200 ms (FindLiveObjects: 0.556000 ms CreateObjectMapping: 0.139800 ms MarkObjects: 2.999000 ms  DeleteObjects: 0.146500 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 417.261247 seconds.
+  path: Assets/Scenes/Game 2.unity
+  artifactKey: Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 2.unity using Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bdb3ff89169c0ce6708a96d26ea35ba') in 0.005894 seconds
+  Import took 0.050621 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 173.930227 seconds.
+  path: Assets/Parking Spot.prefab
+  artifactKey: Guid(78babc7f2d64d2f40846d33deee1aa22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Parking Spot.prefab using Guid(78babc7f2d64d2f40846d33deee1aa22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26a3e8700b44cf119a14fed0fb68d811') in 0.175501 seconds
+  Import took 0.203953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 44.597710 seconds.
+  path: Assets/Scenes/Game 2.unity
+  artifactKey: Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 2.unity using Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ab8bfa91acc7c7941b9ca7a9be7fe12') in 0.002888 seconds
+  Import took 0.087025 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.508436 seconds.
+  path: Assets/Scenes/Game 3.unity
+  artifactKey: Guid(151ba004a08e764459612c71f44d93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 3.unity using Guid(151ba004a08e764459612c71f44d93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bed156d78c278e9ccee44b28b25bf8fc') in 0.008005 seconds
+  Import took 0.013716 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003490 seconds.
+  path: Assets/Scenes/Game 3.unity
+  artifactKey: Guid(151ba004a08e764459612c71f44d93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 3.unity using Guid(151ba004a08e764459612c71f44d93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bed156d78c278e9ccee44b28b25bf8fc') in 0.002027 seconds
+  Import took 0.005793 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000820 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.62 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.331 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.38 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1989 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 95.6 MB.
+System memory in use after: 95.6 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2706.
+Total: 2.605100 ms (FindLiveObjects: 0.423600 ms CreateObjectMapping: 0.183300 ms MarkObjects: 1.881600 ms  DeleteObjects: 0.115200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 474.921536 seconds.
+  path: Assets/Scenes/Game.unity
+  artifactKey: Guid(6df7e3af827922b45bdaf64a0708626e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game.unity using Guid(6df7e3af827922b45bdaf64a0708626e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a19f05f519e009e3dc5602aac53a66ea') in 0.015863 seconds
+  Import took 0.067171 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 75.423951 seconds.
+  path: Assets/Scenes/Game.unity
+  artifactKey: Guid(6df7e3af827922b45bdaf64a0708626e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game.unity using Guid(6df7e3af827922b45bdaf64a0708626e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9217d3da1fd325f33334ec8c169da5bd') in 0.002532 seconds
+  Import took 0.051865 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.506587 seconds.
+  path: Assets/Scenes/Game 3.unity
+  artifactKey: Guid(151ba004a08e764459612c71f44d93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 3.unity using Guid(151ba004a08e764459612c71f44d93fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a474fb6dcc6eb83d9e38ad2e0f79c627') in 0.002544 seconds
+  Import took 0.064634 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.318826 seconds.
+  path: Assets/Scenes/Game 2.unity
+  artifactKey: Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game 2.unity using Guid(60e63915bda61c94fba2d4b56c1ba2af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5563386415cfa836523c6b9197769d64') in 0.008164 seconds
+  Import took 0.052371 seconds .
+

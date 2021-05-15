@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void GameWinContinue()
     {
-        if (SceneManager.GetActiveScene().buildIndex < 2)
+        if (SceneManager.GetActiveScene().buildIndex < 3)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
