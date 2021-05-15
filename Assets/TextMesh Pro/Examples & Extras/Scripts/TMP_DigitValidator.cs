@@ -21,7 +21,7 @@ namespace TMPro
                 return ch;
             }
 
-            return (char)0;
+            return (char) 0;
         }
     }
 }

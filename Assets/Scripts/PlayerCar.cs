@@ -13,9 +13,11 @@ public class PlayerCar : MonoBehaviour
 
     private Rigidbody2D _rb;
 
-    [FormerlySerializedAs("GameOver")] [SerializeField]private GameObject gameOver;
+    [FormerlySerializedAs("GameOver")] [SerializeField]
+    private GameObject gameOver;
 
-    [FormerlySerializedAs("GameWin")] [SerializeField]private GameObject gameWin;
+    [FormerlySerializedAs("GameWin")] [SerializeField]
+    private GameObject gameWin;
 
     public static PlayerCar Instance;
 
@@ -23,10 +25,7 @@ public class PlayerCar : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject);
     }
 
     // Start is called before the first frame update
@@ -75,14 +74,12 @@ public class PlayerCar : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-       
         if (other.gameObject.CompareTag("cars"))
         {
             _rb.velocity = Vector2.zero;
             moveCar = false;
             _accelerate = false;
             gameOver.SetActive(true);
-            
         }
         else if (other.gameObject.CompareTag("boundary"))
         {
