@@ -1,57 +1,53 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Steering : MonoBehaviour
 {
-    public float rotateSpeed = 10f;
+    public float rotateSpeed = 10f; //Used only with desktop controls
 
     public GameObject playerCar;
 
+    [SerializeField] private float velocityMag;
+
     private Camera _camera;
 
-    private Rigidbody2D _playerCarRb;
+    private Vector2 _deltaPos;
+
+    private bool _moveCar;
+
+    private Rigidbody2D _rigidbody2D;
 
     private bool _rotateBack = true;
 
     private float _screenWidth;
 
-    private bool _moveCar;
-
-    private float _remTurnAngle;
-
-    private float _touchPosDiff;
-
-    [SerializeField] private float velocityMag;
-
     private Vector2 _touchPosStart;
+
+    private Rigidbody2D _playerCarRb;
+
+    private float _turnDirection;
 
     private void Awake()
     {
+        _playerCarRb = playerCar.GetComponent<Rigidbody2D>();
         _camera = Camera.main;
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        _rigidbody2D = playerCar.GetComponent<Rigidbody2D>();
         // _playerCarrRigidbody2D = playerCar.GetComponent<Rigidbody2D>();
         Debug.Log("Welcome!!!!!!!");
-        _playerCarRb = playerCar.GetComponent<Rigidbody2D>();
         _screenWidth = Screen.width;
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
-    private bool CarMoving()
-    {
-        velocityMag = playerCar.GetComponent<Rigidbody2D>().velocity.magnitude;
-
-        return velocityMag > .5;
-    }
 
     private void Update()
     {
         _moveCar = CarMoving();
         RotateBack(); //To rotate back car and steering when finger lifted from screen, ie not holding the steering
+        UpdateCarRotation();
 
         switch (SystemInfo.deviceType)
         {
@@ -83,6 +79,31 @@ public class Steering : MonoBehaviour
         }
     }
 
+    private bool CarMoving() // To check if car is moving or not
+    {
+        velocityMag = _rigidbody2D.velocity.magnitude;
+
+        return velocityMag > .8f;
+    }
+
+    private void UpdateCarRotation() // Updating car rotation based on steering rotation, only if car moves
+    {
+        if (!_moveCar) return;
+
+        switch (PlayerCar.Reverse)
+        {
+            case false:
+                // _transform.Rotate(Vector3.forward, transform.rotation.z);
+                _playerCarRb.AddTorque(transform.rotation.z * Mathf.Deg2Rad * _playerCarRb.inertia * 100f * velocityMag, ForceMode2D.Force);
+
+                break;
+            case true:
+                _playerCarRb.AddTorque(-transform.rotation.z * Mathf.Deg2Rad * _playerCarRb.inertia * 100f * velocityMag, ForceMode2D.Force);
+                // _transform.Rotate(Vector3.forward, -transform.rotation.z);
+                break;
+        }
+    }
+
 
     private void MobileInput()
     {
@@ -102,30 +123,19 @@ public class Steering : MonoBehaviour
                 {
                     _rotateBack = false;
                     var currTouchPos = Input.GetTouch(i).position;
-                    _touchPosDiff = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
+                    _turnDirection = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
 
-                    transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
+                    _deltaPos = Input.GetTouch(i).deltaPosition;
 
-                    switch (_moveCar)
-                    {
-                        case true:
-                            playerCar.gameObject.transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime); //Rotate car if its moving front/back
-                            break;
-                        case false:
-                            _remTurnAngle = _touchPosDiff * rotateSpeed * Time.deltaTime;
-                            break;
-                    }
+                    transform.Rotate(Vector3.forward, -_deltaPos.x * 5f * Time.deltaTime); // Rotating steering left/right depending on turn direction
+
+                    // if (_moveCar) //Rotate car if its moving front/back
+                    //     playerCar.gameObject.transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
                 }
 
                 else if (Input.GetTouch(i).phase == TouchPhase.Stationary)
                 {
                     _touchPosStart = Input.GetTouch(i).position;
-
-                    while (Mathf.Abs(playerCar.gameObject.transform.rotation.z - _remTurnAngle) > 0 && CarMoving() == true)
-                        playerCar.gameObject.transform.rotation = Quaternion.RotateTowards(
-                            playerCar.gameObject.transform.rotation,
-                            Quaternion.Euler(0f, 0f, _remTurnAngle),
-                            20f * Time.deltaTime);
                 }
                 else
                 {
@@ -144,13 +154,7 @@ public class Steering : MonoBehaviour
             Quaternion.RotateTowards(
                 transform.rotation,
                 Quaternion.Euler(0f, 0f, 0f),
-                20f * Time.deltaTime);
-
-        if (_moveCar && transform.rotation.z < playerCar.gameObject.transform.rotation.z)
-            playerCar.gameObject.transform.rotation = Quaternion.RotateTowards(
-                playerCar.gameObject.transform.rotation,
-                Quaternion.Euler(0f, 0f, -90f),
-                20f * Time.deltaTime);
+                30f * Time.deltaTime);
     }
 
 
@@ -172,10 +176,10 @@ public class Steering : MonoBehaviour
             if (Math.Abs(_touchPosStart.x - currTouchPos.x) > .1)
             {
                 _rotateBack = false;
-                _touchPosDiff = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
+                _turnDirection = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
 
-                transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
-                playerCar.gameObject.transform.Rotate(Vector3.forward, _touchPosDiff * rotateSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
+                playerCar.gameObject.transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
                 // _playerCarRb.MoveRotation(_touchPosDiff * rotateSpeed * Time.deltaTime);
 
                 // _direction = Mathf.Sign(Vector2.Dot(_playerCarRb.velocity, _playerCarRb.GetRelativeVector(Vector2.up)));

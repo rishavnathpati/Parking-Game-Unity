@@ -1,15 +1,13 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerCar : MonoBehaviour
 {
     [SerializeField] private float force;
 
-    private bool _accelerate = false;
+    private bool _accelerate;
 
-    public bool moveCar = false;
+    public bool moveCar;
 
     private Rigidbody2D _rb;
 
@@ -19,12 +17,16 @@ public class PlayerCar : MonoBehaviour
     [FormerlySerializedAs("GameWin")] [SerializeField]
     private GameObject gameWin;
 
-    public static PlayerCar Instance;
+    private static PlayerCar _instance;
+
+    public static bool Reverse;
+
+    private float _startForce;
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (_instance == null)
+            _instance = this;
         else Destroy(gameObject);
     }
 
@@ -32,6 +34,7 @@ public class PlayerCar : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _startForce = force;
     }
 
     // Update is called once per frame
@@ -47,10 +50,12 @@ public class PlayerCar : MonoBehaviour
         switch (_accelerate)
         {
             case true: // Accelerate
-                _rb.AddRelativeForce(Vector2.up * force, ForceMode2D.Force);
+                _rb.AddRelativeForce(Vector3.right * force, ForceMode2D.Force);
+                force += 1;
                 break;
             case false: // Brake
-                _rb.AddRelativeForce(Vector2.down * force, ForceMode2D.Force);
+                _rb.AddRelativeForce(Vector3.left * force, ForceMode2D.Force);
+                force += .5f;
                 break;
         }
     }
@@ -58,16 +63,19 @@ public class PlayerCar : MonoBehaviour
     public void Decelerate()
     {
         moveCar = false;
+        force = _startForce;
     }
 
     public void Accelerate()
     {
         moveCar = true;
         _accelerate = true;
+        Reverse = false;
     }
 
     public void Brake()
     {
+        Reverse = true;
         moveCar = true;
         _accelerate = false;
     }
