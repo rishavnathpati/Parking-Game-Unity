@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerCar : MonoBehaviour
@@ -11,6 +13,21 @@ public class PlayerCar : MonoBehaviour
 
     private Rigidbody2D _rb;
 
+    [FormerlySerializedAs("GameOver")] [SerializeField]private GameObject gameOver;
+
+    [FormerlySerializedAs("GameWin")] [SerializeField]private GameObject gameWin;
+
+    public static PlayerCar Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -54,5 +71,28 @@ public class PlayerCar : MonoBehaviour
     {
         moveCar = true;
         _accelerate = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+       
+        if (other.gameObject.CompareTag("cars"))
+        {
+            _rb.velocity = Vector2.zero;
+            moveCar = false;
+            _accelerate = false;
+            gameOver.SetActive(true);
+            
+        }
+        else if (other.gameObject.CompareTag("boundary"))
+        {
+            //Show warning, deduct lives
+        }
+        else if (other.gameObject.CompareTag("Finish"))
+        {
+            Debug.Log("Parked Properly");
+            gameWin.SetActive(true);
+            //Next level
+        }
     }
 }
