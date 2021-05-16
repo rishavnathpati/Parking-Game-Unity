@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class ChatController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class ChatController : MonoBehaviour
         // Clear Input Field
         ChatInputField.text = string.Empty;
 
-        var timeNow = System.DateTime.Now;
+        var timeNow = DateTime.Now;
 
         var formattedInput = "[<#FFFF80>" + timeNow.Hour.ToString("d2") + ":" + timeNow.Minute.ToString("d2") + ":" + timeNow.Second.ToString("d2") + "</color>] " + newText;
 

@@ -1,8 +1,6 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 using UnityEditor;
-
+using UnityEngine;
 
 namespace TMPro.Examples
 {
@@ -116,7 +114,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Method to draw a rectangle around each character.
+        ///     Method to draw a rectangle around each character.
         /// </summary>
         /// <param name="text"></param>
         private void DrawCharactersBounds()
@@ -280,7 +278,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Method to draw rectangles around each word of the text.
+        ///     Method to draw rectangles around each word of the text.
         /// </summary>
         /// <param name="text"></param>
         private void DrawWordBounds()
@@ -383,7 +381,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Draw rectangle around each of the links contained in the text.
+        ///     Draw rectangle around each of the links contained in the text.
         /// </summary>
         /// <param name="text"></param>
         private void DrawLinkBounds()
@@ -489,7 +487,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Draw Rectangles around each lines of the text.
+        ///     Draw Rectangles around each lines of the text.
         /// </summary>
         /// <param name="text"></param>
         private void DrawLineBounds()
@@ -572,7 +570,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Draw Rectangle around the bounds of the text object.
+        ///     Draw Rectangle around the bounds of the text object.
         /// </summary>
         private void DrawBounds()
         {

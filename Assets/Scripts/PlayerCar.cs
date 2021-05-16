@@ -3,13 +3,13 @@ using UnityEngine.Serialization;
 
 public class PlayerCar : MonoBehaviour
 {
+    private static PlayerCar _instance;
+
+    public static bool Reverse;
+
     [SerializeField] private float force;
 
-    private bool _accelerate;
-
     public bool moveCar;
-
-    private Rigidbody2D _rb;
 
     [FormerlySerializedAs("GameOver")] [SerializeField]
     private GameObject gameOver;
@@ -17,9 +17,9 @@ public class PlayerCar : MonoBehaviour
     [FormerlySerializedAs("GameWin")] [SerializeField]
     private GameObject gameWin;
 
-    private static PlayerCar _instance;
+    private bool _accelerate;
 
-    public static bool Reverse;
+    private Rigidbody2D _rb;
 
     private float _startForce;
 
@@ -41,6 +41,27 @@ public class PlayerCar : MonoBehaviour
     private void FixedUpdate()
     {
         ControlMovement();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("cars"))
+        {
+            _rb.velocity = Vector2.zero;
+            moveCar = false;
+            _accelerate = false;
+            gameOver.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("boundary"))
+        {
+            //Show warning, deduct lives
+        }
+        else if (other.gameObject.CompareTag("Finish"))
+        {
+            Debug.Log("Parked Properly");
+            gameWin.SetActive(true);
+            //Next level
+        }
     }
 
     private void ControlMovement()
@@ -78,26 +99,5 @@ public class PlayerCar : MonoBehaviour
         Reverse = true;
         moveCar = true;
         _accelerate = false;
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("cars"))
-        {
-            _rb.velocity = Vector2.zero;
-            moveCar = false;
-            _accelerate = false;
-            gameOver.SetActive(true);
-        }
-        else if (other.gameObject.CompareTag("boundary"))
-        {
-            //Show warning, deduct lives
-        }
-        else if (other.gameObject.CompareTag("Finish"))
-        {
-            Debug.Log("Parked Properly");
-            gameWin.SetActive(true);
-            //Next level
-        }
     }
 }

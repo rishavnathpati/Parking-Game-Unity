@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using TMPro;
-
 
 namespace TMPro.Examples
 {
@@ -13,20 +9,20 @@ namespace TMPro.Examples
             TextMeshPro = 0,
 
             TextMeshProUGUI = 1
-        };
-
-        public objectType ObjectType;
-
-        public bool isStatic;
-
-        private TMP_Text m_text;
+        }
 
         //private TMP_InputField m_inputfield;
 
 
         private const string k_label = "The count is <#0080ff>{0}</color>";
 
+        public objectType ObjectType;
+
+        public bool isStatic;
+
         private int count;
+
+        private TMP_Text m_text;
 
         private void Awake()
         {

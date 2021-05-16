@@ -1,15 +1,15 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
+using UnityEngine;
 
 public class EnvMapAnimator : MonoBehaviour
 {
     //private Vector3 TranslationSpeeds;
     public Vector3 RotationSpeeds;
 
-    private TMP_Text m_textMeshPro;
-
     private Material m_material;
+
+    private TMP_Text m_textMeshPro;
 
 
     private void Awake()

@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 namespace TMPro.Examples
 {
@@ -24,7 +22,7 @@ namespace TMPro.Examples
 
         private Color32 m_lightColor;
 
-        private int frames = 0;
+        private int frames;
 
         public enum MotionType
         {
@@ -33,7 +31,7 @@ namespace TMPro.Examples
             BackAndForth,
 
             Translation
-        };
+        }
 
         public MotionType Motion;
 

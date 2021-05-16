@@ -1,23 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
-
 
 namespace TMPro.Examples
 {
     public class TMP_TextSelector_A : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        private TextMeshPro m_TextMeshPro;
-
         private Camera m_Camera;
 
         private bool m_isHoveringObject;
 
-        private int m_selectedLink = -1;
-
         private int m_lastCharIndex = -1;
 
         private int m_lastWordIndex = -1;
+
+        private int m_selectedLink = -1;
+
+        private TextMeshPro m_TextMeshPro;
 
         private void Awake()
         {

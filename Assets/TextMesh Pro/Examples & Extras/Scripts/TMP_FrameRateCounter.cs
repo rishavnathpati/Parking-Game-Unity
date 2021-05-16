@@ -1,17 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 namespace TMPro.Examples
 {
     public class TMP_FrameRateCounter : MonoBehaviour
     {
-        public float UpdateInterval = 5.0f;
-
-        private float m_LastInterval = 0;
-
-        private int m_Frames = 0;
-
         public enum FpsCounterAnchorPositions
         {
             TopLeft,
@@ -21,21 +13,27 @@ namespace TMPro.Examples
             TopRight,
 
             BottomRight
-        };
+        }
+
+        private const string fpsLabel = "{0:2}</color> <#8080ff>FPS \n<#FF8000>{1:2} <#8080ff>MS";
+
+        public float UpdateInterval = 5.0f;
 
         public FpsCounterAnchorPositions AnchorPosition = FpsCounterAnchorPositions.TopRight;
 
         private string htmlColorTag;
 
-        private const string fpsLabel = "{0:2}</color> <#8080ff>FPS \n<#FF8000>{1:2} <#8080ff>MS";
-
-        private TextMeshPro m_TextMeshPro;
-
-        private Transform m_frameCounter_transform;
+        private FpsCounterAnchorPositions last_AnchorPosition;
 
         private Camera m_camera;
 
-        private FpsCounterAnchorPositions last_AnchorPosition;
+        private Transform m_frameCounter_transform;
+
+        private int m_Frames;
+
+        private float m_LastInterval;
+
+        private TextMeshPro m_TextMeshPro;
 
         private void Awake()
         {

@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-
+﻿using System.Collections;
+using UnityEngine;
 
 namespace TMPro.Examples
 {
@@ -14,14 +13,20 @@ namespace TMPro.Examples
 
         public float RotationMultiplier = 1.0f;
 
-        private TMP_Text m_TextComponent;
-
         private bool hasTextChanged;
+
+        private TMP_Text m_TextComponent;
 
 
         private void Awake()
         {
             m_TextComponent = GetComponent<TMP_Text>();
+        }
+
+
+        private void Start()
+        {
+            StartCoroutine(AnimateVertexColors());
         }
 
         private void OnEnable()
@@ -36,12 +41,6 @@ namespace TMPro.Examples
         }
 
 
-        private void Start()
-        {
-            StartCoroutine(AnimateVertexColors());
-        }
-
-
         private void ON_TEXT_CHANGED(Object obj)
         {
             if (obj = m_TextComponent)
@@ -49,7 +48,7 @@ namespace TMPro.Examples
         }
 
         /// <summary>
-        /// Method to animate vertex colors of a TMP Text object.
+        ///     Method to animate vertex colors of a TMP Text object.
         /// </summary>
         /// <returns></returns>
         private IEnumerator AnimateVertexColors()

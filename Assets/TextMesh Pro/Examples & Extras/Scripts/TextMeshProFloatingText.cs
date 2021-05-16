@@ -1,44 +1,43 @@
-using UnityEngine;
 using System.Collections;
-
+using UnityEngine;
 
 namespace TMPro.Examples
 {
     public class TextMeshProFloatingText : MonoBehaviour
     {
-        public Font TheFont;
-
-        private GameObject m_floatingText;
-
-        private TextMeshPro m_textMeshPro;
-
-        private TextMesh m_textMesh;
-
-        private Transform m_transform;
-
-        private Transform m_floatingText_Transform;
-
-        private Transform m_cameraTransform;
-
-        private Vector3 lastPOS = Vector3.zero;
-
-        private Quaternion lastRotation = Quaternion.identity;
-
-        public int SpawnType;
-
-        public bool IsTextObjectScaleStatic;
-
         //private int m_frame = 0;
 
-        private static WaitForEndOfFrame k_WaitForEndOfFrame = new WaitForEndOfFrame();
+        private static readonly WaitForEndOfFrame k_WaitForEndOfFrame = new WaitForEndOfFrame();
 
-        private static WaitForSeconds[] k_WaitForSecondsRandom = new WaitForSeconds[]
+        private static readonly WaitForSeconds[] k_WaitForSecondsRandom =
         {
             new WaitForSeconds(0.05f), new WaitForSeconds(0.1f), new WaitForSeconds(0.15f), new WaitForSeconds(0.2f), new WaitForSeconds(0.25f),
             new WaitForSeconds(0.3f), new WaitForSeconds(0.35f), new WaitForSeconds(0.4f), new WaitForSeconds(0.45f), new WaitForSeconds(0.5f),
             new WaitForSeconds(0.55f), new WaitForSeconds(0.6f), new WaitForSeconds(0.65f), new WaitForSeconds(0.7f), new WaitForSeconds(0.75f),
             new WaitForSeconds(0.8f), new WaitForSeconds(0.85f), new WaitForSeconds(0.9f), new WaitForSeconds(0.95f), new WaitForSeconds(1.0f)
         };
+
+        public Font TheFont;
+
+        public int SpawnType;
+
+        public bool IsTextObjectScaleStatic;
+
+        private Vector3 lastPOS = Vector3.zero;
+
+        private Quaternion lastRotation = Quaternion.identity;
+
+        private Transform m_cameraTransform;
+
+        private GameObject m_floatingText;
+
+        private Transform m_floatingText_Transform;
+
+        private TextMesh m_textMesh;
+
+        private TextMeshPro m_textMeshPro;
+
+        private Transform m_transform;
 
         private void Awake()
         {

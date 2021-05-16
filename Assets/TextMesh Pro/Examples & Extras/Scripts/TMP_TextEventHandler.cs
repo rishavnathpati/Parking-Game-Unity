@@ -1,41 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using System;
-
 
 namespace TMPro
 {
     public class TMP_TextEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [Serializable]
-        public class CharacterSelectionEvent : UnityEvent<char, int>
-        {
-        }
+        [SerializeField] private CharacterSelectionEvent m_OnCharacterSelection = new CharacterSelectionEvent();
 
-        [Serializable]
-        public class SpriteSelectionEvent : UnityEvent<char, int>
-        {
-        }
+        [SerializeField] private SpriteSelectionEvent m_OnSpriteSelection = new SpriteSelectionEvent();
 
-        [Serializable]
-        public class WordSelectionEvent : UnityEvent<string, int, int>
-        {
-        }
+        [SerializeField] private WordSelectionEvent m_OnWordSelection = new WordSelectionEvent();
 
-        [Serializable]
-        public class LineSelectionEvent : UnityEvent<string, int, int>
-        {
-        }
+        [SerializeField] private LineSelectionEvent m_OnLineSelection = new LineSelectionEvent();
 
-        [Serializable]
-        public class LinkSelectionEvent : UnityEvent<string, string, int>
-        {
-        }
+        [SerializeField] private LinkSelectionEvent m_OnLinkSelection = new LinkSelectionEvent();
+
+        private Camera m_Camera;
+
+        private Canvas m_Canvas;
+
+        private int m_lastCharIndex = -1;
+
+        private int m_lastLineIndex = -1;
+
+        private int m_lastWordIndex = -1;
+
+        private int m_selectedLink = -1;
+
+
+        private TMP_Text m_TextComponent;
 
 
         /// <summary>
-        /// Event delegate triggered when pointer is over a character.
+        ///     Event delegate triggered when pointer is over a character.
         /// </summary>
         public CharacterSelectionEvent onCharacterSelection
         {
@@ -43,11 +42,9 @@ namespace TMPro
             set => m_OnCharacterSelection = value;
         }
 
-        [SerializeField] private CharacterSelectionEvent m_OnCharacterSelection = new CharacterSelectionEvent();
-
 
         /// <summary>
-        /// Event delegate triggered when pointer is over a sprite.
+        ///     Event delegate triggered when pointer is over a sprite.
         /// </summary>
         public SpriteSelectionEvent onSpriteSelection
         {
@@ -55,11 +52,9 @@ namespace TMPro
             set => m_OnSpriteSelection = value;
         }
 
-        [SerializeField] private SpriteSelectionEvent m_OnSpriteSelection = new SpriteSelectionEvent();
-
 
         /// <summary>
-        /// Event delegate triggered when pointer is over a word.
+        ///     Event delegate triggered when pointer is over a word.
         /// </summary>
         public WordSelectionEvent onWordSelection
         {
@@ -67,11 +62,9 @@ namespace TMPro
             set => m_OnWordSelection = value;
         }
 
-        [SerializeField] private WordSelectionEvent m_OnWordSelection = new WordSelectionEvent();
-
 
         /// <summary>
-        /// Event delegate triggered when pointer is over a line.
+        ///     Event delegate triggered when pointer is over a line.
         /// </summary>
         public LineSelectionEvent onLineSelection
         {
@@ -79,34 +72,15 @@ namespace TMPro
             set => m_OnLineSelection = value;
         }
 
-        [SerializeField] private LineSelectionEvent m_OnLineSelection = new LineSelectionEvent();
-
 
         /// <summary>
-        /// Event delegate triggered when pointer is over a link.
+        ///     Event delegate triggered when pointer is over a link.
         /// </summary>
         public LinkSelectionEvent onLinkSelection
         {
             get => m_OnLinkSelection;
             set => m_OnLinkSelection = value;
         }
-
-        [SerializeField] private LinkSelectionEvent m_OnLinkSelection = new LinkSelectionEvent();
-
-
-        private TMP_Text m_TextComponent;
-
-        private Camera m_Camera;
-
-        private Canvas m_Canvas;
-
-        private int m_selectedLink = -1;
-
-        private int m_lastCharIndex = -1;
-
-        private int m_lastWordIndex = -1;
-
-        private int m_lastLineIndex = -1;
 
         private void Awake()
         {
@@ -269,6 +243,31 @@ namespace TMPro
         {
             if (onLinkSelection != null)
                 onLinkSelection.Invoke(linkID, linkText, linkIndex);
+        }
+
+        [Serializable]
+        public class CharacterSelectionEvent : UnityEvent<char, int>
+        {
+        }
+
+        [Serializable]
+        public class SpriteSelectionEvent : UnityEvent<char, int>
+        {
+        }
+
+        [Serializable]
+        public class WordSelectionEvent : UnityEvent<string, int, int>
+        {
+        }
+
+        [Serializable]
+        public class LineSelectionEvent : UnityEvent<string, int, int>
+        {
+        }
+
+        [Serializable]
+        public class LinkSelectionEvent : UnityEvent<string, string, int>
+        {
         }
     }
 }

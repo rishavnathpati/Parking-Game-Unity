@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-
+﻿using System.Collections;
+using UnityEngine;
 
 namespace TMPro.Examples
 {
@@ -12,25 +11,19 @@ namespace TMPro.Examples
 
         public float CurveScale = 1.0f;
 
-        private TMP_Text m_TextComponent;
-
         private bool hasTextChanged;
 
-        /// <summary>
-        /// Structure to hold pre-computed animation data.
-        /// </summary>
-        private struct VertexAnim
-        {
-            public float angleRange;
-
-            public float angle;
-
-            public float speed;
-        }
+        private TMP_Text m_TextComponent;
 
         private void Awake()
         {
             m_TextComponent = GetComponent<TMP_Text>();
+        }
+
+
+        private void Start()
+        {
+            StartCoroutine(AnimateVertexColors());
         }
 
         private void OnEnable()
@@ -45,12 +38,6 @@ namespace TMPro.Examples
         }
 
 
-        private void Start()
-        {
-            StartCoroutine(AnimateVertexColors());
-        }
-
-
         private void ON_TEXT_CHANGED(Object obj)
         {
             if (obj == m_TextComponent)
@@ -58,7 +45,7 @@ namespace TMPro.Examples
         }
 
         /// <summary>
-        /// Method to animate vertex colors of a TMP Text object.
+        ///     Method to animate vertex colors of a TMP Text object.
         /// </summary>
         /// <returns></returns>
         private IEnumerator AnimateVertexColors()
@@ -172,6 +159,18 @@ namespace TMPro.Examples
 
                 yield return new WaitForSeconds(0.1f);
             }
+        }
+
+        /// <summary>
+        ///     Structure to hold pre-computed animation data.
+        /// </summary>
+        private struct VertexAnim
+        {
+            public float angleRange;
+
+            public float angle;
+
+            public float speed;
         }
     }
 }

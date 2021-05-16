@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 namespace TMPro.Examples
 {
@@ -15,19 +13,19 @@ namespace TMPro.Examples
             TopRight,
 
             BottomRight
-        };
-
-        public FpsCounterAnchorPositions AnchorPosition = FpsCounterAnchorPositions.BottomLeft;
+        }
 
         private const string instructions = "Camera Control - <#ffff00>Shift + RMB\n</color>Zoom - <#ffff00>Mouse wheel.";
 
-        private TextMeshPro m_TextMeshPro;
+        public FpsCounterAnchorPositions AnchorPosition = FpsCounterAnchorPositions.BottomLeft;
 
-        private TextContainer m_textContainer;
+        private Camera m_camera;
 
         private Transform m_frameCounter_transform;
 
-        private Camera m_camera;
+        private TextContainer m_textContainer;
+
+        private TextMeshPro m_TextMeshPro;
 
         //private FpsCounterAnchorPositions last_AnchorPosition;
 

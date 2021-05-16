@@ -1,14 +1,13 @@
-using UnityEngine;
 using System.Collections;
-
+using UnityEngine;
 
 namespace TMPro.Examples
 {
     public class TextConsoleSimulator : MonoBehaviour
     {
-        private TMP_Text m_TextComponent;
-
         private bool hasTextChanged;
+
+        private TMP_Text m_TextComponent;
 
         private void Awake()
         {
@@ -43,7 +42,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Method revealing the text one character at a time.
+        ///     Method revealing the text one character at a time.
         /// </summary>
         /// <returns></returns>
         private IEnumerator RevealCharacters(TMP_Text textComponent)
@@ -79,7 +78,7 @@ namespace TMPro.Examples
 
 
         /// <summary>
-        /// Method revealing the text one word at a time.
+        ///     Method revealing the text one word at a time.
         /// </summary>
         /// <returns></returns>
         private IEnumerator RevealWords(TMP_Text textComponent)

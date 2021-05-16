@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 
 namespace TMPro.Examples
 {
     public class SimpleScript : MonoBehaviour
     {
-        private TextMeshPro m_textMeshPro;
         //private TMP_FontAsset m_FontAsset;
 
         private const string label = "The <#0050FF>count is: </color>{0:2}";
 
         private float m_frame;
+
+        private TextMeshPro m_textMeshPro;
 
 
         private void Start()

@@ -15,15 +15,13 @@ public class Steering : MonoBehaviour
 
     private bool _moveCar;
 
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D _playerCarRb;
 
     private bool _rotateBack = true;
 
     private float _screenWidth;
 
     private Vector2 _touchPosStart;
-
-    private Rigidbody2D _playerCarRb;
 
     private float _turnDirection;
 
@@ -36,9 +34,6 @@ public class Steering : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        _rigidbody2D = playerCar.GetComponent<Rigidbody2D>();
-        // _playerCarrRigidbody2D = playerCar.GetComponent<Rigidbody2D>();
-        Debug.Log("Welcome!!!!!!!");
         _screenWidth = Screen.width;
     }
 
@@ -81,25 +76,30 @@ public class Steering : MonoBehaviour
 
     private bool CarMoving() // To check if car is moving or not
     {
-        velocityMag = _rigidbody2D.velocity.magnitude;
+        velocityMag = _playerCarRb.velocity.magnitude;
 
         return velocityMag > .8f;
     }
 
     private void UpdateCarRotation() // Updating car rotation based on steering rotation, only if car moves
     {
-        if (!_moveCar) return;
+        if (!_moveCar || transform.rotation.z == 0) return;
+
+        if (_turnDirection < 0)
+        {
+            //to be implemented for accessing complete 360 to -360 degree rotation of steering, current state allows a range of 180 to -180
+        }
 
         switch (PlayerCar.Reverse)
         {
             case false:
                 // _transform.Rotate(Vector3.forward, transform.rotation.z);
-                _playerCarRb.AddTorque(transform.rotation.z * Mathf.Deg2Rad * _playerCarRb.inertia * 100f * velocityMag, ForceMode2D.Force);
-
+                _playerCarRb.AddTorque(transform.rotation.z * Mathf.Deg2Rad * _playerCarRb.inertia * 150f * velocityMag, ForceMode2D.Force);
                 break;
+
             case true:
-                _playerCarRb.AddTorque(-transform.rotation.z * Mathf.Deg2Rad * _playerCarRb.inertia * 100f * velocityMag, ForceMode2D.Force);
                 // _transform.Rotate(Vector3.forward, -transform.rotation.z);
+                _playerCarRb.AddTorque(-transform.rotation.z * Mathf.Deg2Rad * _playerCarRb.inertia * 150f * velocityMag, ForceMode2D.Force);
                 break;
         }
     }
@@ -124,10 +124,8 @@ public class Steering : MonoBehaviour
                     _rotateBack = false;
                     var currTouchPos = Input.GetTouch(i).position;
                     _turnDirection = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
-
                     _deltaPos = Input.GetTouch(i).deltaPosition;
-
-                    transform.Rotate(Vector3.forward, -_deltaPos.x * 5f * Time.deltaTime); // Rotating steering left/right depending on turn direction
+                    transform.Rotate(Vector3.forward, -_deltaPos.x * 10f * Time.deltaTime); // Rotating steering left/right depending on turn direction
 
                     // if (_moveCar) //Rotate car if its moving front/back
                     //     playerCar.gameObject.transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
@@ -179,7 +177,8 @@ public class Steering : MonoBehaviour
                 _turnDirection = Mathf.Sign(_touchPosStart.x - currTouchPos.x);
 
                 transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
-                playerCar.gameObject.transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
+
+                // playerCar.gameObject.transform.Rotate(Vector3.forward, _turnDirection * rotateSpeed * Time.deltaTime);
                 // _playerCarRb.MoveRotation(_touchPosDiff * rotateSpeed * Time.deltaTime);
 
                 // _direction = Mathf.Sign(Vector2.Dot(_playerCarRb.velocity, _playerCarRb.GetRelativeVector(Vector2.up)));

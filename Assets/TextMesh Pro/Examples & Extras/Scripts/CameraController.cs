@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-
 
 namespace TMPro.Examples
 {
@@ -15,9 +13,13 @@ namespace TMPro.Examples
             Free
         }
 
-        private Transform cameraTransform;
+        // Controls for Touches on Mobile devices
+        //private float prev_ZoomDelta;
 
-        private Transform dummyTarget;
+
+        private const string event_SmoothingValue = "Slider - Smoothing Value";
+
+        private const string event_FollowDistance = "Slider - Camera Zoom";
 
         public Transform CameraTarget;
 
@@ -31,17 +33,15 @@ namespace TMPro.Examples
 
         public float MaxElevationAngle = 85.0f;
 
-        public float MinElevationAngle = 0f;
+        public float MinElevationAngle;
 
-        public float OrbitalAngle = 0f;
+        public float OrbitalAngle;
 
         public CameraModes CameraMode = CameraModes.Follow;
 
         public bool MovementSmoothing = true;
 
-        public bool RotationSmoothing = false;
-
-        private bool previousSmoothing;
+        public bool RotationSmoothing;
 
         public float MovementSmoothingValue = 25f;
 
@@ -49,9 +49,15 @@ namespace TMPro.Examples
 
         public float MoveSensitivity = 2.0f;
 
+        private Transform cameraTransform;
+
         private Vector3 currentVelocity = Vector3.zero;
 
         private Vector3 desiredPosition;
+
+        private Transform dummyTarget;
+
+        private float mouseWheel;
 
         private float mouseX;
 
@@ -59,15 +65,7 @@ namespace TMPro.Examples
 
         private Vector3 moveVector;
 
-        private float mouseWheel;
-
-        // Controls for Touches on Mobile devices
-        //private float prev_ZoomDelta;
-
-
-        private const string event_SmoothingValue = "Slider - Smoothing Value";
-
-        private const string event_FollowDistance = "Slider - Camera Zoom";
+        private bool previousSmoothing;
 
 
         private void Awake()
@@ -113,12 +111,8 @@ namespace TMPro.Examples
                 {
                     desiredPosition = CameraTarget.position + CameraTarget.TransformDirection(Quaternion.Euler(ElevationAngle, OrbitalAngle, 0f) * new Vector3(0, 0, -FollowDistance));
                 }
-                else
-                {
-                    // Free Camera implementation
-                }
 
-                if (MovementSmoothing == true)
+                if (MovementSmoothing)
                     // Using Smoothing
                     cameraTransform.position = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref currentVelocity, MovementSmoothingValue * Time.fixedDeltaTime);
                 //cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredPosition, Time.deltaTime * 5.0f);
@@ -126,7 +120,7 @@ namespace TMPro.Examples
                     // Not using Smoothing
                     cameraTransform.position = desiredPosition;
 
-                if (RotationSmoothing == true)
+                if (RotationSmoothing)
                     cameraTransform.rotation = Quaternion.Lerp(cameraTransform.rotation, Quaternion.LookRotation(CameraTarget.position - cameraTransform.position), RotationSmoothingValue * Time.deltaTime);
                 else cameraTransform.LookAt(CameraTarget);
             }
